@@ -1,5 +1,6 @@
 package com.ygmpkk.flutter_umplus;
 
+import java.util.Map;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -42,7 +43,9 @@ public class FlutterUmplusPlugin implements MethodCallHandler {
       logPageView(call, result);
     } else if (call.method.equals("event")) {
       event(call, result);
-    } else {
+    } else if (call.method.equals("eventObj")) {
+      eventObj(call, result);
+    }else {
       result.notImplemented();
     }
   }
@@ -112,6 +115,13 @@ public class FlutterUmplusPlugin implements MethodCallHandler {
     // Session间隔时长,单位是毫秒，默认Session间隔时间是30秒,一般情况下不用修改此值
 //    Long seconds = Double.valueOf(call.argument("seconds")).longValue();
 //    MobclickAgent.setSessionContinueMillis(seconds);
+    result.success(null);
+  }
+
+  public void eventObj(MethodCall call, Result result) {
+    String name = (String)call.argument("name");
+    Map map = (Map)call.argument("map");
+    MobclickAgent.onEventObject(activity, name, map);
     result.success(null);
   }
 

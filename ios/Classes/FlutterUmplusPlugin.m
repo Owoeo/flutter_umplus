@@ -30,7 +30,8 @@
     [self endPageView:call result:result];
   } else if ([@"event" isEqualToString:call.method]) {
     [self event:call result:result];
-    result(nil);
+  } else if ([@"eventObj" isEqualToString:call.method]) {
+    [self eventObj:call result:result];
   } else {
     result(FlutterMethodNotImplemented);
   }
@@ -100,6 +101,21 @@
   // TODO add attributes
 
   [MobClick event:name label:label];
+
+  result(nil);
+}
+
+
+- (void)eventObj:(FlutterMethodCall *)call result:(FlutterResult)result {
+  NSString *name = call.arguments[@"name"];
+  NSDictionary *map = call.arguments[@"map"];
+
+  NSLog(@"event name: %@", name);
+  NSLog(@"event map: %@", map);
+
+  // TODO add attributes
+
+  [MobClick event:name attributes:map];
 
   result(nil);
 }
