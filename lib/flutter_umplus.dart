@@ -65,7 +65,7 @@ class FlutterUmplus {
   /// 计数事件统计
   /// [eventId]  当前统计的事件ID
   /// [map] 对当前事件的参数描述，定义为“参数名:参数值”的HashMap“<键-值>对”。
-  static Future<Null> eventObj(String name, Map map) async {
+  static Future<Null> eventObj(String name, Map<String, String> map) async {
     _channel.invokeMethod("eventObj", {"name": name, "map": map});
   }
 }

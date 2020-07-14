@@ -120,8 +120,8 @@ public class FlutterUmplusPlugin implements MethodCallHandler {
 
   public void eventObj(MethodCall call, Result result) {
     String name = (String)call.argument("name");
-    Map map = (Map)call.argument("map");
-    MobclickAgent.onEventObject(activity, name, map);
+    Map<String, String> map = (Map<String, String>)call.argument("map");
+    MobclickAgent.onEvent(activity, name, map);
     result.success(null);
   }
 
